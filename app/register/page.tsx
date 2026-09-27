@@ -14,7 +14,6 @@ export default function Register() {
   const [scrollY, setScrollY] = useState(0)
   const router = useRouter()
 
-  // Parallax effect
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener('scroll', handleScroll)
@@ -52,9 +51,7 @@ export default function Register() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white relative overflow-hidden">
-      {/* Banner Anime dengan Parallax */}
       <div className="relative w-full h-64 md:h-80 overflow-hidden">
-        {/* Background image dengan parallax */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
           style={{
@@ -63,11 +60,9 @@ export default function Register() {
           }}
         ></div>
 
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#1a0b2e]/50 to-[#1a0b2e]"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/40 via-transparent to-fuchsia-900/30"></div>
 
-        {/* Teks Overlay di Banner */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 animate-fade-in-up">
           <div className="inline-block bg-purple-500/20 backdrop-blur-md border border-purple-400/40 rounded-full px-4 py-1 mb-3">
             <span className="text-purple-200 text-xs font-semibold tracking-wide">
@@ -82,16 +77,14 @@ export default function Register() {
           </p>
         </div>
 
-        {/* Vignette bawah biar smooth */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1a0b2e] to-transparent"></div>
       </div>
 
-      {/* Form Card */}
       <div className="relative z-10 -mt-16 flex items-center justify-center px-6 pb-16">
         <div className="w-full max-w-md animate-fade-in-up">
           <Link href="/" className="flex items-center gap-2 justify-center mb-6 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/40 group-hover:scale-110 transition animate-glow">
-              <span className="text-white font-bold">H</span>
+            <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg shadow-purple-500/40 group-hover:scale-110 transition animate-glow">
+              <img src="/logo.jpg" alt="HanzzOTP" className="w-full h-full object-cover" />
             </div>
             <h1 className="text-2xl font-bold text-white">
               Hanzz<span className="text-purple-400">OTP</span>
