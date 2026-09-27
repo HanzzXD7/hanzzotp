@@ -1,10 +1,19 @@
 export default function Home() {
-  const faqs = [
-    { q: 'Apa itu HanzzOTP?', a: 'HanzzOTP adalah layanan yang menyediakan nomor virtual untuk menerima kode OTP dari berbagai platform seperti WhatsApp, Telegram, Instagram, dan lainnya.' },
-    { q: 'Berapa lama OTP masuk?', a: 'Rata-rata OTP masuk dalam 1-3 menit setelah order. Kalau lebih dari 20 menit tidak masuk, saldo akan otomatis dikembalikan.' },
-    { q: 'Apakah aman?', a: 'Ya, kami menggunakan penyedia API resmi dan terenkripsi. Data kamu tidak akan dibagikan ke pihak lain.' },
-    { q: 'Bagaimana cara deposit?', a: 'Deposit bisa melalui QRIS, transfer bank, atau e-wallet. Saldo akan masuk otomatis setelah pembayaran dikonfirmasi.' },
-    { q: 'Apakah ada refund?', a: 'Jika OTP tidak masuk dalam 20 menit, saldo otomatis dikembalikan 100% tanpa potongan.' },
+  const stats = [
+    { num: '12K+', label: 'Pengguna Aktif' },
+    { num: '97.6%', label: 'Success Rate' },
+    { num: '< 30s', label: 'OTP Masuk' },
+  ]
+
+  const prices = [
+    { name: 'WhatsApp', price: 'Rp2.500' },
+    { name: 'Telegram', price: 'Rp2.000' },
+    { name: 'Instagram', price: 'Rp1.500' },
+    { name: 'TikTok', price: 'Rp1.500' },
+    { name: 'Facebook', price: 'Rp2.000' },
+    { name: 'Google', price: 'Rp3.000' },
+    { name: 'Shopee', price: 'Rp200' },
+    { name: 'Gojek', price: 'Rp500' },
   ]
 
   const steps = [
@@ -14,59 +23,79 @@ export default function Home() {
     { num: '4', title: 'Terima OTP', desc: 'Kode OTP muncul otomatis di dashboard' },
   ]
 
-  const prices = [
-    { name: 'WhatsApp', price: 'Rp2.500', color: 'from-green-500/20 to-green-500/5', border: 'border-green-500/30' },
-    { name: 'Telegram', price: 'Rp2.000', color: 'from-blue-500/20 to-blue-500/5', border: 'border-blue-500/30' },
-    { name: 'Instagram', price: 'Rp1.500', color: 'from-pink-500/20 to-pink-500/5', border: 'border-pink-500/30' },
-    { name: 'TikTok', price: 'Rp1.500', color: 'from-purple-500/20 to-purple-500/5', border: 'border-purple-500/30' },
-    { name: 'Facebook', price: 'Rp2.000', color: 'from-blue-600/20 to-blue-600/5', border: 'border-blue-600/30' },
-    { name: 'Google', price: 'Rp3.000', color: 'from-red-500/20 to-red-500/5', border: 'border-red-500/30' },
+  const faqs = [
+    { q: 'Apa itu HanzzOTP?', a: 'HanzzOTP adalah layanan sewa nomor virtual untuk menerima SMS OTP dari berbagai platform seperti WhatsApp, Telegram, Instagram, Shopee, dan ratusan aplikasi lainnya.' },
+    { q: 'Berapa lama OTP masuk?', a: 'Rata-rata OTP masuk dalam 30 detik. Kalau lebih dari 20 menit tidak masuk, saldo otomatis dikembalikan 100%.' },
+    { q: 'Apakah aman?', a: 'Ya, kami menggunakan penyedia API resmi dan terenkripsi. Data kamu tidak akan dibagikan ke pihak lain.' },
+    { q: 'Bagaimana cara deposit?', a: 'Deposit bisa melalui QRIS, transfer bank, atau e-wallet. Saldo masuk otomatis setelah pembayaran dikonfirmasi.' },
+    { q: 'Apakah ada refund?', a: 'Jika OTP tidak masuk dalam 20 menit, saldo otomatis dikembalikan 100% tanpa potongan.' },
   ]
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white">
       {/* Navbar */}
-      <nav className="flex justify-between items-center px-6 py-4 border-b border-purple-500/20 sticky top-0 backdrop-blur-lg bg-[#1a0b2e]/80 z-50">
-        <h1 className="text-2xl font-bold">
-          Hanzz<span className="text-purple-400">OTP</span>
-        </h1>
-        <div className="flex gap-3">
-          <button className="px-4 py-2 hover:bg-white/10 rounded-lg transition">
-            Login
+      <nav className="flex justify-between items-center px-6 py-4 border-b border-purple-500/20 sticky top-0 bg-[#1a0b2e]/80 backdrop-blur-lg z-50">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-sm">H</span>
+          </div>
+          <h1 className="text-xl font-bold">
+            Hanzz<span className="text-purple-400">OTP</span>
+          </h1>
+        </div>
+        <div className="flex gap-2">
+          <button className="px-4 py-2 text-slate-200 hover:bg-white/10 rounded-lg transition font-medium text-sm">
+            Masuk
           </button>
-          <button className="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-lg transition font-semibold">
+          <button className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg transition font-semibold text-sm">
             Daftar
           </button>
         </div>
       </nav>
 
       {/* Hero */}
-      <div className="container mx-auto px-6 py-20 text-center">
+      <div className="container mx-auto px-6 py-12 max-w-2xl">
         <div className="inline-block bg-purple-500/20 border border-purple-400/30 rounded-full px-4 py-1 mb-6">
-          <span className="text-purple-300 text-sm">Layanan OTP Tercepat #1</span>
+          <span className="text-purple-300 text-xs font-semibold">● PLATFORM TERPERCAYA · SISTEM AKTIF 24/7</span>
         </div>
 
-        <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-          Order OTP <span className="text-purple-400">Cepat & Aman</span>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+          OTP Murah <span className="text-purple-400">#1</span><br />
+          Sewa Nomor di Indonesia
         </h2>
 
-        <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
-          Dapatkan nomor virtual untuk verifikasi OTP dari berbagai layanan
-          dalam hitungan detik. Harga murah, proses instan, 24 jam online.
+        <p className="text-base text-slate-200 mb-4 leading-relaxed">
+          Verifikasi <b>WhatsApp</b>, <b>Telegram</b>, <b>Tinder</b>, <b>Gojek</b>, <b>Shopee</b> dan ratusan aplikasi lainnya — <b className="text-purple-300">mulai Rp150</b> saja.
         </p>
 
-        <div className="flex gap-4 justify-center flex-wrap">
-          <button className="bg-purple-500 hover:bg-purple-600 px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-purple-500/30">
-            Mulai Sekarang
+        <p className="text-slate-400 italic mb-6">"Cepat, Aman, Terpercaya."</p>
+
+        <p className="text-slate-400 mb-8 leading-relaxed text-sm">
+          HanzzOTP adalah penyedia <b className="text-slate-200">sewa nomor virtual</b> & layanan <b className="text-slate-200">SMS OTP murah Indonesia</b> — solusi praktis buat verifikasi akun aplikasi tanpa harus pakai nomor pribadi atau beli kartu SIM baru. Tersedia <b className="text-slate-200">100+ layanan</b> dari <b className="text-slate-200">30+ negara</b> dengan harga paling kompetitif, refund otomatis bila OTP gagal masuk.
+        </p>
+
+        <div className="flex flex-col gap-3 mb-10">
+          <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-4 rounded-xl font-semibold text-base transition shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2">
+            🚀 Mulai Sekarang Gratis
           </button>
-          <button className="border border-white/20 hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition">
-            Lihat Harga
+          <button className="bg-white/10 hover:bg-white/20 border border-purple-500/20 text-white px-6 py-4 rounded-xl font-semibold text-base transition flex items-center justify-center gap-2">
+            💰 Cek Harga Termurah
           </button>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-3">
+          {stats.map((s, i) => (
+            <div key={i} className="bg-white/5 border border-purple-500/20 rounded-xl p-4 text-center">
+              <div className="text-2xl font-bold text-purple-400 mb-1">{s.num}</div>
+              <div className="text-xs text-slate-400">{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Features */}
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto px-6 py-16 max-w-4xl">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-6 hover:bg-white/10 transition">
             <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center mb-4">
@@ -85,7 +114,7 @@ export default function Home() {
               </svg>
             </div>
             <h3 className="text-xl font-bold mb-2">Harga Murah</h3>
-            <p className="text-slate-400">Mulai dari Rp1.000 per OTP</p>
+            <p className="text-slate-400">Mulai dari Rp150 per OTP</p>
           </div>
 
           <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-6 hover:bg-white/10 transition">
@@ -101,48 +130,45 @@ export default function Home() {
       </div>
 
       {/* Harga */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">
+      <div className="container mx-auto px-6 py-16 max-w-4xl">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Daftar <span className="text-purple-400">Harga</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="text-slate-400 max-w-2xl mx-auto text-sm">
             Harga transparan, tanpa biaya tersembunyi. Bayar sesuai yang kamu pakai.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {prices.map((p, i) => (
-            <div
-              key={i}
-              className={`bg-gradient-to-br ${p.color} border ${p.border} rounded-2xl p-6 hover:scale-105 transition`}
-            >
-              <h3 className="text-lg font-bold mb-2">{p.name}</h3>
-              <p className="text-2xl font-bold text-purple-300">{p.price}</p>
-              <p className="text-slate-400 text-sm mt-1">per OTP</p>
+            <div key={i} className="bg-white/5 border border-purple-500/20 rounded-xl p-4 hover:bg-white/10 hover:border-purple-400/40 transition text-center">
+              <h3 className="text-sm font-semibold mb-1 text-slate-200">{p.name}</h3>
+              <p className="text-lg font-bold text-purple-400">{p.price}</p>
+              <p className="text-slate-500 text-xs mt-1">per OTP</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Cara Order */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">
+      <div className="container mx-auto px-6 py-16 max-w-4xl">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Cara <span className="text-purple-400">Order</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="text-slate-400 max-w-2xl mx-auto text-sm">
             Cuma 4 langkah mudah, kamu udah bisa terima OTP.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-4 gap-4">
           {steps.map((s, i) => (
-            <div key={i} className="relative bg-white/5 border border-purple-500/20 rounded-2xl p-6">
-              <div className="w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center text-xl font-bold mb-4">
+            <div key={i} className="bg-white/5 border border-purple-500/20 rounded-2xl p-5">
+              <div className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-lg font-bold mb-3">
                 {s.num}
               </div>
-              <h3 className="text-lg font-bold mb-2">{s.title}</h3>
+              <h3 className="text-base font-bold mb-1">{s.title}</h3>
               <p className="text-slate-400 text-sm">{s.desc}</p>
             </div>
           ))}
@@ -150,31 +176,22 @@ export default function Home() {
       </div>
 
       {/* FAQ */}
-      <div className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4">
+      <div className="container mx-auto px-6 py-16 max-w-3xl">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Pertanyaan <span className="text-purple-400">Umum</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
+          <p className="text-slate-400 text-sm">
             Belum nemu jawabannya? Hubungi kami via WhatsApp atau Telegram.
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-3">
+        <div className="space-y-3">
           {faqs.map((f, i) => (
-            <details
-              key={i}
-              className="group bg-white/5 border border-purple-500/20 rounded-xl p-5 hover:bg-white/10 transition"
-            >
+            <details key={i} className="group bg-white/5 border border-purple-500/20 rounded-xl p-5 hover:bg-white/10 transition">
               <summary className="flex justify-between items-center cursor-pointer list-none">
                 <span className="font-semibold pr-4">{f.q}</span>
-                <svg
-                  className="w-5 h-5 text-purple-400 flex-shrink-0 group-open:rotate-180 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
+                <svg className="w-5 h-5 text-purple-400 flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
               </summary>
@@ -185,7 +202,7 @@ export default function Home() {
       </div>
 
       {/* CTA */}
-      <div className="container mx-auto px-6 py-16">
+      <div className="container mx-auto px-6 py-16 max-w-4xl">
         <div className="bg-gradient-to-r from-purple-600/30 to-purple-800/30 border border-purple-500/30 rounded-3xl p-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Siap Mulai Order OTP?
@@ -201,7 +218,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-purple-500/20 mt-20 pt-12 pb-8">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 max-w-4xl">
           <div className="grid md:grid-cols-4 gap-8 mb-10">
             <div className="md:col-span-2">
               <h3 className="text-2xl font-bold mb-3">
@@ -241,4 +258,4 @@ export default function Home() {
       </footer>
     </main>
   )
-              }
+}
