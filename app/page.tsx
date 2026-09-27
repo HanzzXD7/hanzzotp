@@ -74,17 +74,15 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white relative overflow-x-hidden">
-      {/* Floating background blobs */}
       <div className="fixed top-0 left-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-blob pointer-events-none -z-0"></div>
       <div className="fixed top-1/3 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-blob pointer-events-none -z-0" style={{ animationDelay: '2s' }}></div>
       <div className="fixed bottom-0 left-1/3 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-3xl animate-blob pointer-events-none -z-0" style={{ animationDelay: '4s' }}></div>
 
       <div className="relative z-10">
-        {/* Navbar */}
         <nav className="flex justify-between items-center px-6 py-4 border-b border-purple-500/20 sticky top-0 bg-[#1a0b2e]/80 backdrop-blur-lg z-50 animate-fade-in">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center shadow-lg shadow-purple-500/40 animate-glow">
-              <span className="text-white font-bold text-sm">H</span>
+            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-purple-500/40 animate-glow">
+              <img src="/logo.jpg" alt="HanzzOTP" className="w-full h-full object-cover" />
             </div>
             <h1 className="text-xl font-bold">
               Hanzz<span className="text-purple-400">OTP</span>
@@ -100,7 +98,6 @@ export default function Home() {
           </div>
         </nav>
 
-        {/* Hero */}
         <div className="container mx-auto px-6 py-12 max-w-2xl">
           <div className="inline-block bg-purple-500/20 border border-purple-400/30 rounded-full px-4 py-1 mb-6 animate-fade-in-up delay-100">
             <span className="text-purple-300 text-xs font-semibold">● PLATFORM TERPERCAYA · SISTEM AKTIF 24/7</span>
@@ -146,7 +143,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Features */}
         <div className="container mx-auto px-6 py-16 max-w-4xl">
           <div className="grid md:grid-cols-3 gap-6">
             <div className="reveal reveal-delay-1 bg-white/5 border border-purple-500/20 rounded-2xl p-6 hover:bg-white/10 hover-lift">
@@ -181,7 +177,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Harga */}
         <div id="harga" className="container mx-auto px-6 py-16 max-w-4xl">
           <div className="text-center mb-10 reveal">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -206,7 +201,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Cara Order */}
         <div className="container mx-auto px-6 py-16 max-w-4xl">
           <div className="text-center mb-10 reveal">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -230,7 +224,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* FAQ */}
         <div className="container mx-auto px-6 py-16 max-w-3xl">
           <div className="text-center mb-10 reveal">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -256,14 +249,18 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Footer */}
         <footer className="border-t border-purple-500/20 mt-20 pt-12 pb-8 reveal">
           <div className="container mx-auto px-6 max-w-4xl">
             <div className="grid md:grid-cols-4 gap-8 mb-10">
               <div className="md:col-span-2">
-                <h3 className="text-2xl font-bold mb-3">
-                  Hanzz<span className="text-purple-400">OTP</span>
-                </h3>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-purple-500/40">
+                    <img src="/logo.jpg" alt="HanzzOTP" className="w-full h-full object-cover" />
+                  </div>
+                  <h3 className="text-2xl font-bold">
+                    Hanzz<span className="text-purple-400">OTP</span>
+                  </h3>
+                </div>
                 <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
                   Layanan nomor virtual untuk verifikasi OTP dari berbagai platform.
                   Cepat, murah, dan terpercaya sejak 2026.
@@ -299,4 +296,4 @@ export default function Home() {
       </div>
     </main>
   )
-      }
+}
