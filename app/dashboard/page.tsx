@@ -29,14 +29,16 @@ export default function Dashboard() {
   if (loading) {
     return (
       <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white flex items-center justify-center">
-        <p className="text-slate-400">Loading...</p>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-purple-400"></div>
       </main>
     )
   }
 
+  const username = user?.user_metadata?.username || user?.email?.split('@')[0] || 'User'
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white">
-      <nav className="flex justify-between items-center px-6 py-4 border-b border-purple-500/20">
+      <nav className="flex justify-between items-center px-6 py-4 border-b border-purple-500/20 sticky top-0 bg-[#1a0b2e]/80 backdrop-blur-lg z-50">
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">H</span>
@@ -58,8 +60,18 @@ export default function Dashboard() {
         <p className="text-slate-400 mb-8">Selamat datang kembali!</p>
 
         <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-6 mb-6">
-          <p className="text-slate-400 text-sm mb-2">Login sebagai:</p>
-          <p className="text-lg font-semibold">{user?.email}</p>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30">
+              <span className="text-white font-bold text-2xl">
+                {username.charAt(0).toUpperCase()}
+              </span>
+            </div>
+            <div>
+              <p className="text-slate-400 text-xs mb-1">Login sebagai:</p>
+              <p className="text-xl font-bold text-purple-300">@{username}</p>
+              <p className="text-slate-400 text-sm">{user?.email}</p>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-8">
