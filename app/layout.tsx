@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'HanzzOTP - Order OTP Cepat & Aman',
   description: 'Layanan sewa nomor virtual untuk verifikasi OTP dari berbagai platform. Cepat, murah, dan terpercaya.',
+  icons: {
+    icon: '/icon.jpg',
+  },
 }
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
