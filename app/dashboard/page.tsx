@@ -41,8 +41,8 @@ export default function Dashboard() {
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white">
       <nav className="flex justify-between items-center px-6 py-4 border-b border-purple-500/20 sticky top-0 bg-[#1a0b2e]/80 backdrop-blur-lg z-50">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">H</span>
+          <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-purple-500/40">
+            <img src="/logo.jpg" alt="HanzzOTP" className="w-full h-full object-cover" />
           </div>
           <h1 className="text-xl font-bold">
             Hanzz<span className="text-purple-400">OTP</span>
@@ -86,13 +86,11 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Fitur order OTP */}
         <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-8 text-center mb-6">
           <p className="text-slate-400 mb-2">Fitur order OTP</p>
           <p className="text-slate-500 text-sm">Segera hadir 🚧</p>
         </div>
 
-        {/* Section Donasi Developer */}
         <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-2xl p-6 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
@@ -107,7 +105,7 @@ export default function Dashboard() {
                 Dukung <span className="text-purple-400">Developer</span>
               </h3>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Bantu Admin Se Ikhlasnya, Biar Admin Semangat Bikin Projectnya❤️
+                Traktir gue kopi ☕ biar HanzzOTP terus dikembangin dan tetap gratis!
               </p>
             </div>
           </div>
