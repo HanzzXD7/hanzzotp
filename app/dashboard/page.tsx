@@ -8,6 +8,7 @@ import Link from 'next/link'
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+  const [showQR, setShowQR] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -60,7 +61,7 @@ export default function Dashboard() {
         <p className="text-slate-400 mb-8">Selamat datang kembali!</p>
 
         <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-6 mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4">
             <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30">
               <span className="text-white font-bold text-2xl">
                 {username.charAt(0).toUpperCase()}
@@ -85,9 +86,60 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-8 text-center">
+        {/* Fitur order OTP */}
+        <div className="bg-white/5 border border-purple-500/20 rounded-2xl p-8 text-center mb-6">
           <p className="text-slate-400 mb-2">Fitur order OTP</p>
           <p className="text-slate-500 text-sm">Segera hadir 🚧</p>
+        </div>
+
+        {/* Section Donasi Developer */}
+        <div className="bg-gradient-to-br from-purple-600/20 to-purple-800/20 border border-purple-500/30 rounded-2xl p-6 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+
+          <div className="flex items-start gap-4 mb-4 relative">
+            <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <h3 className="text-lg font-bold mb-1">
+                Dukung <span className="text-purple-400">Developer</span>
+              </h3>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Bantu Admin Se Ikhlasnya, Biar Admin Semangat Bikin Projectnya❤️
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setShowQR(!showQR)}
+            className="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-purple-500/30 flex items-center justify-center gap-2 relative"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" />
+            </svg>
+            {showQR ? 'Tutup QRIS' : 'Tampilkan QRIS'}
+          </button>
+
+          {showQR && (
+            <div className="mt-4 bg-white rounded-2xl p-4 text-center relative">
+              <img
+                src="/qris.jpeg"
+                alt="QRIS Donasi"
+                className="w-full max-w-sm mx-auto rounded-lg"
+              />
+              <p className="text-gray-700 font-semibold mt-3 text-sm">
+                Scan pakai e-wallet apapun 📱
+              </p>
+              <p className="text-gray-500 text-xs mt-1">
+                DANA · OVO · GoPay · ShopeePay · Mobile Banking
+              </p>
+              <p className="text-purple-600 text-xs mt-2 font-medium">
+                Setiap donasi sangat berarti 🙏
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </main>
