@@ -269,21 +269,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="container mx-auto px-6 py-16 max-w-4xl">
-        <div className="bg-gradient-to-r from-purple-600/30 to-purple-800/30 border border-purple-500/30 rounded-3xl p-10 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Siap Mulai Order OTP?
-          </h2>
-          <p className="text-slate-300 mb-8 max-w-xl mx-auto">
-            Daftar sekarang dan nikmati kemudahan verifikasi OTP tanpa ribet.
-          </p>
-          <button className="bg-purple-500 hover:bg-purple-600 px-8 py-4 rounded-xl font-semibold text-lg transition shadow-lg shadow-purple-500/30">
-            Daftar Gratis Sekarang
-          </button>
-        </div>
-      </div>
-
       {/* Footer */}
       <footer className="border-t border-purple-500/20 mt-20 pt-12 pb-8">
         <div className="container mx-auto px-6 max-w-4xl">
@@ -326,4 +311,4 @@ export default function Home() {
       </footer>
     </main>
   )
-      }
+              }
