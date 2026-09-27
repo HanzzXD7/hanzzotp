@@ -43,23 +43,34 @@ export default function Register() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white flex items-center justify-center px-6 py-12">
-      <div className="fixed top-0 left-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-      <div className="fixed bottom-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+    <main className="min-h-screen relative overflow-hidden flex items-center justify-center px-6 py-12">
+      {/* Background Anime */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/anime-bg.jpg')" }}
+      ></div>
 
-      <div className="w-full max-w-md relative">
+      {/* Overlay gradient biar form kebaca */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a0b2e]/95 via-[#2d1b4e]/90 to-[#1a0b2e]/95"></div>
+
+      {/* Blob dekoratif */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl animate-blob pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-fuchsia-500/20 rounded-full blur-3xl animate-blob pointer-events-none" style={{ animationDelay: '2s' }}></div>
+
+      {/* Konten */}
+      <div className="w-full max-w-md relative z-10">
         <Link href="/" className="flex items-center gap-2 justify-center mb-8 group">
-          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 transition">
+          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/40 group-hover:scale-110 transition animate-glow">
             <span className="text-white font-bold">H</span>
           </div>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-2xl font-bold text-white">
             Hanzz<span className="text-purple-400">OTP</span>
           </h1>
         </Link>
 
-        <div className="bg-white/[0.03] backdrop-blur-xl border border-purple-500/20 rounded-3xl p-8 shadow-2xl shadow-purple-500/10">
+        <div className="bg-white/[0.03] backdrop-blur-2xl border border-purple-500/30 rounded-3xl p-8 shadow-2xl shadow-purple-500/20">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-2">
+            <h2 className="text-3xl font-bold mb-2 text-white">
               Daftar <span className="text-purple-400">Akun</span>
             </h2>
             <p className="text-slate-400 text-sm">
@@ -83,7 +94,7 @@ export default function Register() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ''))}
                   placeholder="hanzzxd"
-                  className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/20 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/30 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
                 />
               </div>
             </div>
@@ -102,7 +113,7 @@ export default function Register() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@kamu.com"
-                  className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/20 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/30 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
                 />
               </div>
             </div>
@@ -122,7 +133,7 @@ export default function Register() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Minimal 6 karakter"
-                  className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/20 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
+                  className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/30 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
                 />
               </div>
             </div>
@@ -139,7 +150,7 @@ export default function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl transition shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3.5 rounded-xl transition shadow-lg shadow-purple-500/40 hover:shadow-purple-500/60 hover:scale-[1.02] active:scale-[0.98]"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
