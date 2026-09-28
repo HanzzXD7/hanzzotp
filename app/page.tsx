@@ -74,9 +74,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white relative overflow-x-hidden">
-      <div className="fixed top-0 left-0 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-blob pointer-events-none -z-0"></div>
-      <div className="fixed top-1/3 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-blob pointer-events-none -z-0" style={{ animationDelay: '2s' }}></div>
-      <div className="fixed bottom-0 left-1/3 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-3xl animate-blob pointer-events-none -z-0" style={{ animationDelay: '4s' }}></div>
+      {/* Background blobs — cuma di desktop */}
+      <div className="hidden md:block fixed top-0 left-0 w-80 h-80 bg-purple-600/20 rounded-full blur-2xl animate-blob pointer-events-none -z-0"></div>
+      <div className="hidden md:block fixed bottom-0 right-0 w-80 h-80 bg-fuchsia-600/15 rounded-full blur-2xl animate-blob pointer-events-none -z-0" style={{ animationDelay: '4s' }}></div>
 
       <div className="relative z-10">
         <nav className="flex justify-between items-center px-6 py-4 border-b border-purple-500/20 sticky top-0 bg-[#1a0b2e]/80 backdrop-blur-lg z-50 animate-fade-in">
@@ -296,4 +296,4 @@ export default function Home() {
       </div>
     </main>
   )
-}
+                  }
