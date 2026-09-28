@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
@@ -12,14 +12,7 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [scrollY, setScrollY] = useState(0)
   const router = useRouter()
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   // Validasi real-time
   const isUsernameValid = username.length >= 3
@@ -76,14 +69,11 @@ export default function Register() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white relative overflow-hidden">
-      {/* Banner */}
+      {/* Banner dengan CSS Parallax */}
       <div className="relative w-full h-64 md:h-80 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
-          style={{
-            backgroundImage: "url('/anime-bg.jpg')",
-            transform: `translateY(${scrollY * 0.4}px) scale(1.1)`,
-          }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+          style={{ backgroundImage: "url('/anime-bg.jpg')" }}
         ></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#1a0b2e]/50 to-[#1a0b2e]"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/40 via-transparent to-fuchsia-900/30"></div>
@@ -117,7 +107,7 @@ export default function Register() {
             </h1>
           </Link>
 
-          <div className="bg-white/[0.03] backdrop-blur-2xl border border-purple-500/30 rounded-3xl p-8 shadow-2xl shadow-purple-500/20">
+          <div className="bg-white/[0.03] backdrop-blur-xl border border-purple-500/30 rounded-3xl p-8 shadow-2xl shadow-purple-500/20">
             <div className="mb-8">
               <h2 className="text-3xl font-bold mb-2 text-white">
                 Daftar <span className="text-purple-400">Akun</span>
@@ -138,7 +128,7 @@ export default function Register() {
                     </span>
                   )}
                 </div>
-                <div className="relative group">
+                <div className="relative">
                   <div className={`absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none transition ${isUsernameValid ? 'text-green-400' : 'text-purple-400'}`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -247,7 +237,6 @@ export default function Register() {
                   </button>
                 </div>
 
-                {/* Strength Bar */}
                 {password && (
                   <div className="mt-3 animate-fade-in">
                     <div className="flex gap-1 mb-2">
@@ -261,7 +250,6 @@ export default function Register() {
                       ))}
                     </div>
 
-                    {/* Requirements */}
                     <div className="grid grid-cols-2 gap-1.5 text-xs">
                       <div className={`flex items-center gap-1.5 ${passReqs.length ? 'text-green-400' : 'text-slate-500'}`}>
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
@@ -327,4 +315,4 @@ export default function Register() {
       </div>
     </main>
   )
-                          }
+            }
