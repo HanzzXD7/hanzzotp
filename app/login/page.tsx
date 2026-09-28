@@ -33,30 +33,31 @@ export default function Login() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white relative overflow-hidden">
-      {/* Banner dengan CSS Parallax (bg-fixed) */}
+      {/* Banner Anime di atas */}
       <div className="relative w-full h-64 md:h-80 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/anime-bg.jpg')" }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#1a0b2e]/50 to-[#1a0b2e]"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/40 via-transparent to-fuchsia-900/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-[#1a0b2e]/40 to-[#1a0b2e]"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/25 via-transparent to-fuchsia-900/20"></div>
 
+        {/* Teks Overlay di Banner */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 animate-fade-in-up">
-          <div className="inline-block bg-purple-500/20 backdrop-blur-md border border-purple-400/40 rounded-full px-4 py-1 mb-3">
-            <span className="text-purple-200 text-xs font-semibold tracking-wide">
+          <div className="inline-block bg-purple-500/25 backdrop-blur-md border border-purple-400/40 rounded-full px-4 py-1 mb-3">
+            <span className="text-purple-100 text-xs font-semibold tracking-wide">
               ✨ WELCOME BACK
             </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-2xl mb-1">
             Selamat Datang
           </h1>
-          <p className="text-purple-100/90 text-sm md:text-base drop-shadow-lg">
+          <p className="text-purple-50 text-sm md:text-base drop-shadow-lg">
             Login dan lanjut order OTP kamu
           </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1a0b2e] to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1a0b2e] to-transparent pointer-events-none"></div>
       </div>
 
       {/* Form */}
@@ -82,7 +83,6 @@ export default function Login() {
             </div>
 
             <form onSubmit={handleLogin} className="space-y-5">
-              {/* EMAIL */}
               <div>
                 <label className="block text-sm font-medium mb-2 text-slate-200">Email</label>
                 <div className="relative">
@@ -113,7 +113,6 @@ export default function Login() {
                 </div>
               </div>
 
-              {/* PASSWORD */}
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-sm font-medium text-slate-200">Password</label>
