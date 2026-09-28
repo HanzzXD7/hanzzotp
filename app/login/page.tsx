@@ -6,8 +6,6 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 export default function Login() {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -208,4 +206,4 @@ export default function Login() {
       </div>
     </main>
   )
-      }
+}
