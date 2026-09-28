@@ -9,6 +9,7 @@ export default function Register() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [scrollY, setScrollY] = useState(0)
@@ -20,13 +21,39 @@ export default function Register() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Validasi real-time
+  const isUsernameValid = username.length >= 3
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+
+  // Password requirements
+  const passReqs = {
+    length: password.length >= 6,
+    hasUpper: /[A-Z]/.test(password),
+    hasNumber: /[0-9]/.test(password),
+  }
+  const passScore = Object.values(passReqs).filter(Boolean).length
+  const passStrength = passScore === 0 ? 0 : passScore === 1 ? 1 : passScore === 2 ? 2 : 3
+  const passLabel = ['', 'Lemah', 'Sedang', 'Kuat'][passStrength]
+  const passColor = ['', 'bg-red-500', 'bg-yellow-500', 'bg-green-500'][passStrength]
+  const passTextColor = ['', 'text-red-400', 'text-yellow-400', 'text-green-400'][passStrength]
+
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
 
-    if (username.length < 3) {
+    if (!isUsernameValid) {
       setError('Username minimal 3 karakter')
+      setLoading(false)
+      return
+    }
+    if (!isEmailValid) {
+      setError('Format email tidak valid')
+      setLoading(false)
+      return
+    }
+    if (passScore < 3) {
+      setError('Password belum memenuhi semua syarat')
       setLoading(false)
       return
     }
@@ -34,9 +61,7 @@ export default function Register() {
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: { username },
-      },
+      options: { data: { username } },
     })
 
     if (error) {
@@ -51,6 +76,7 @@ export default function Register() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-[#1a0b2e] via-[#2d1b4e] to-[#1a0b2e] text-white relative overflow-hidden">
+      {/* Banner */}
       <div className="relative w-full h-64 md:h-80 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
@@ -59,7 +85,6 @@ export default function Register() {
             transform: `translateY(${scrollY * 0.4}px) scale(1.1)`,
           }}
         ></div>
-
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#1a0b2e]/50 to-[#1a0b2e]"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/40 via-transparent to-fuchsia-900/30"></div>
 
@@ -80,6 +105,7 @@ export default function Register() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#1a0b2e] to-transparent"></div>
       </div>
 
+      {/* Form */}
       <div className="relative z-10 -mt-16 flex items-center justify-center px-6 pb-16">
         <div className="w-full max-w-md animate-fade-in-up">
           <Link href="/" className="flex items-center gap-2 justify-center mb-6 group">
@@ -102,10 +128,18 @@ export default function Register() {
             </div>
 
             <form onSubmit={handleRegister} className="space-y-5">
+              {/* USERNAME */}
               <div>
-                <label className="block text-sm font-medium mb-2 text-slate-200">Username</label>
-                <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-400 pointer-events-none">
+                <div className="flex justify-between items-center mb-2">
+                  <label className="text-sm font-medium text-slate-200">Username</label>
+                  {username && (
+                    <span className={`text-xs font-medium ${isUsernameValid ? 'text-green-400' : 'text-slate-500'}`}>
+                      {username.length}/3 {isUsernameValid && '✓'}
+                    </span>
+                  )}
+                </div>
+                <div className="relative group">
+                  <div className={`absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none transition ${isUsernameValid ? 'text-green-400' : 'text-purple-400'}`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
@@ -113,19 +147,35 @@ export default function Register() {
                   <input
                     type="text"
                     required
-                    minLength={3}
                     value={username}
                     onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ''))}
                     placeholder="hanzzxd"
-                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/30 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
+                    className={`w-full pl-12 pr-12 py-3.5 bg-white/5 border rounded-xl focus:outline-none focus:bg-white/10 transition text-white placeholder-slate-500 ${
+                      username
+                        ? isUsernameValid
+                          ? 'border-green-500/40 focus:border-green-400'
+                          : 'border-purple-500/30 focus:border-purple-400'
+                        : 'border-purple-500/30 focus:border-purple-400'
+                    }`}
                   />
+                  {isUsernameValid && (
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-green-400 animate-fade-in">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
+                <p className="text-slate-500 text-xs mt-1.5">
+                  Huruf kecil, angka, dan underscore. Minimal 3 karakter.
+                </p>
               </div>
 
+              {/* EMAIL */}
               <div>
                 <label className="block text-sm font-medium mb-2 text-slate-200">Email</label>
                 <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-400 pointer-events-none">
+                  <div className={`absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none transition ${isEmailValid ? 'text-green-400' : 'text-purple-400'}`}>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
@@ -136,13 +186,34 @@ export default function Register() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="email@kamu.com"
-                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/30 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
+                    className={`w-full pl-12 pr-12 py-3.5 bg-white/5 border rounded-xl focus:outline-none focus:bg-white/10 transition text-white placeholder-slate-500 ${
+                      email
+                        ? isEmailValid
+                          ? 'border-green-500/40 focus:border-green-400'
+                          : 'border-purple-500/30 focus:border-purple-400'
+                        : 'border-purple-500/30 focus:border-purple-400'
+                    }`}
                   />
+                  {isEmailValid && (
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-green-400 animate-fade-in">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
               </div>
 
+              {/* PASSWORD */}
               <div>
-                <label className="block text-sm font-medium mb-2 text-slate-200">Password</label>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="text-sm font-medium text-slate-200">Password</label>
+                  {password && (
+                    <span className={`text-xs font-semibold ${passTextColor}`}>
+                      {passLabel}
+                    </span>
+                  )}
+                </div>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 text-purple-400 pointer-events-none">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -150,19 +221,73 @@ export default function Register() {
                     </svg>
                   </div>
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     required
-                    minLength={6}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Minimal 6 karakter"
-                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-purple-500/30 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
+                    className="w-full pl-12 pr-12 py-3.5 bg-white/5 border border-purple-500/30 rounded-xl focus:outline-none focus:border-purple-400 focus:bg-white/10 transition text-white placeholder-slate-500"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-purple-400 transition"
+                    aria-label="Toggle password"
+                  >
+                    {showPassword ? (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    )}
+                  </button>
                 </div>
+
+                {/* Strength Bar */}
+                {password && (
+                  <div className="mt-3 animate-fade-in">
+                    <div className="flex gap-1 mb-2">
+                      {[1, 2, 3].map((i) => (
+                        <div
+                          key={i}
+                          className={`h-1 flex-1 rounded-full transition-all duration-300 ${
+                            i <= passStrength ? passColor : 'bg-white/10'
+                          }`}
+                        ></div>
+                      ))}
+                    </div>
+
+                    {/* Requirements */}
+                    <div className="grid grid-cols-2 gap-1.5 text-xs">
+                      <div className={`flex items-center gap-1.5 ${passReqs.length ? 'text-green-400' : 'text-slate-500'}`}>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d={passReqs.length ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12'} />
+                        </svg>
+                        6+ karakter
+                      </div>
+                      <div className={`flex items-center gap-1.5 ${passReqs.hasUpper ? 'text-green-400' : 'text-slate-500'}`}>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d={passReqs.hasUpper ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12'} />
+                        </svg>
+                        Huruf besar
+                      </div>
+                      <div className={`flex items-center gap-1.5 ${passReqs.hasNumber ? 'text-green-400' : 'text-slate-500'}`}>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d={passReqs.hasNumber ? 'M5 13l4 4L19 7' : 'M6 18L18 6M6 6l12 12'} />
+                        </svg>
+                        Ada angka
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {error && (
-                <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3 text-red-300 text-sm flex items-start gap-2">
+                <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3 text-red-300 text-sm flex items-start gap-2 animate-fade-in">
                   <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -202,4 +327,4 @@ export default function Register() {
       </div>
     </main>
   )
-}
+                          }
